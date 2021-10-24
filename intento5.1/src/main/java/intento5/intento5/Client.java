@@ -10,59 +10,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.id.CompositeNestedGeneratedValueGenerator;
 
 @Entity
 @Table(name="Client")
 public class Client implements Serializable{
-    
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer IdClient;
-    private String email;
-    private String password;
-    private String name;
-    private Integer age;
-    
-    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
-    @JsonIgnoreProperties("client")
-    public List<Message>messages;
-    
-    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "client")
-    @JsonIgnoreProperties("client")
-    public List<Reservation>reservations;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Integer idClient;
+   private String email;
+   private String password;
+   private String name;
+   private Integer age;
 
+   @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
+   @JsonIgnoreProperties("client")
+   public List<Message>messages;
+   
+   @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
+   @JsonIgnoreProperties("client")
+   public List<Reservation>reservations;
+   
     public Integer getIdClient() {
-        return IdClient;
+        return idClient;
     }
 
     public void setIdClient(Integer idClient) {
-        this.IdClient = idClient;
-    }
-
-    public List<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
-    }
-
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
-    
-    
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        this.idClient = idClient;
     }
 
     public String getEmail() {
@@ -71,6 +45,14 @@ public class Client implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -89,5 +71,21 @@ public class Client implements Serializable{
         this.age = age;
     }
 
+    public List<Message> getMessages() {
+        return messages;
+    }
 
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+   
+   
 }
